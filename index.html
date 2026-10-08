@@ -231,6 +231,18 @@
     color: var(--paper);
     margin-bottom: 14px;
   }
+  .card .eyebrow.eyebrow-dilemma{
+    background:#83B8F9;
+    color:var(--ink); 
+  } 
+  .card .eyebrow.eyebrow-opdracht{
+    background:#7FDCCF;
+    color:var(--ink);
+  }
+  .card .eyebrow.eyebrow-vraag{
+    background:#F09ECD;
+    color:var(--ink);
+  }
   .card .body-text{
     font-size: 1.28rem;
     line-height:1.42;
@@ -481,7 +493,7 @@
     return list[idx];
   }
 
-  function renderCard({ mark, accent, eyebrow, body, lines, isPlaceholder, iframeSrc }){
+  function renderCard({ mark, accent, eyebrow, eyebrowClass, body, lines, isPlaceholder, iframeSrc }){
     card.classList.add('flipping');
     setTimeout(() => {
       card.style.setProperty('--accent', accent || 'var(--ink)');
@@ -492,7 +504,7 @@
 
       if(eyebrow){
         const badge = document.createElement('div');
-        badge.className = 'eyebrow';
+        badge.className = 'eyebrow' + (eyebrowClass ? ' ' + eyebrowClass : '');
         badge.textContent = eyebrow;
         card.appendChild(badge);
       }
@@ -577,6 +589,7 @@
         mark:'Dilemma',
         accent:'var(--dilemma)',
         eyebrow,
+        eyebrowClass:'eyebrow-dilemma',
         lines: [
           { text: optionA },
           { text: 'of', divider:true },
@@ -605,8 +618,9 @@
       const typeLower = typeTrimmed.toLowerCase();
       const label = typeLower === 'doen' ? 'Opdracht' : typeLower === 'waarheid' ? 'Vraag' : (typeTrimmed || fallbackEyebrow);
       const eyebrow = spicyMode ? '🌶️ ' + label : label;
+      const eyebrowClass = typeLower === 'doen' ? 'eyebrow-opdracht' : typeLower === 'waarheid' ? 'eyebrow-vraag' : '';
       const mark = typeTrimmed || fallbackMark;
-      renderCard({ mark, accent:'var(--doen)', eyebrow, body: text || '' });
+      renderCard({ mark, accent:'var(--doen)', eyebrow, eyebrowClass, body: text || '' });
     } catch(e){
       renderCard({ mark:'Doen / Waarheid', accent:'var(--doen)', eyebrow:'Fout', body:'Kon het spreadsheet niet laden. Controleer de verbinding en probeer opnieuw.', isPlaceholder:true });
     }
