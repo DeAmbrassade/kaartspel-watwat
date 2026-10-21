@@ -575,10 +575,12 @@
     try{
       const tabName = spicyMode ? TAB_DILEMMA_SPICY : TAB_DILEMMA;
       const rows = await getTab(tabName);
-      const columnA = rows.map(r => (r[0] || '').trim()).filter(Boolean);
-      const columnB = rows.map(r => (r[1] || '').trim()).filter(Boolean);
-      const optionA = pickRandomFrom(columnA, tabName + '-a');
-      const optionB = pickRandomFrom(columnB, tabName + '-b');
+      const pairs = rows
+      .map(r => [(r[0] || '').trim(), (r[1] || '').trim()])
+      .filter(([a, b]) => a && b);
+      const pair = pickRandomFrom(pairs, tabName);
+      const optionA = pair ? pair[0] : null;
+      const optionB = pair ? pair[1] : null;
       const eyebrow = spicyMode ? '🌶️ Dilemma' : 'Dilemma';
       if(!optionA || !optionB){
         renderCard({ mark:'Dilemma', accent:'var(--dilemma)', eyebrow, body:'Geen dilemma\'s gevonden in het spreadsheet.', isPlaceholder:true });
