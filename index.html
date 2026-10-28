@@ -197,6 +197,8 @@
     transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
   }
   .card.has-video{ aspect-ratio: auto; justify-content:flex-start; }
+  .card[data-mark="Speluitleg"]{ aspect-ratio:auto; justify-content:flex-start; padding:56px 24px; }
+.card[data-mark="Speluitleg"] .body-text{ font-size:0.95rem; font-weight:400; line-height:1.55; text-align:left; white-space:pre-line; }
   .card.flipping{ transform: rotateY(90deg) rotate(-1.5deg); }
   .card::before, .card::after{
     content: attr(data-mark);
@@ -561,12 +563,46 @@
       });
     } else {
       renderCard({
-        mark: '▶',
-        accent: 'var(--spel)',
-        eyebrow: 'Speluitleg',
-        body: 'De uitlegvideo is nog niet toegevoegd. Zodra hij klaar is, verschijnt hij hier vanzelf.',
-        isPlaceholder: true
-      });
+  mark: 'Speluitleg',
+  accent: 'var(--spel)',
+  eyebrow: 'Zo werkt het',
+  body: `Doel van het spel
+Leer elkaar (nog) beter kennen met dit WAT WAT-kaartspel. Voer opdrachten uit, beantwoord vragen en ontdek verrassende dingen over elkaar!
+Je krijgt punten door:
+•	dilemma’s te beantwoorden (1 punt)
+•	doe-opdrachten te doen of waarheid-vragen te beantwoorden (2 punten)
+De eerste speler die 10 punten verzamelt wint het spel.
+Voorbereiding
+•	Schud alle blauwe kaarten.
+•	Geef elke speler 7 blauwe kaarten en 1 joker-kaart.
+•	Schud de overgebleven blauwe kaarten met de rode kaarten en leg deze stapel bedenkt in het midden van de tafel.
+Spelverloop
+•	Elke speler begint met 7 blauwe kaarten en 1 joker.
+•	Tijdens je beurt kan je één kaart spelen, of een nieuwe kaart trekken als je niet kan/wil spelen. 
+o	Beïnvloed het spel met een actiekaart.
+o	Verdien 1 punt door een dilemmakaart te beantwoorden.
+o	Verdien 2 punten door een doe- of waarheidskaart uit te voeren of te beantwoorden.
+•	Leg de verzamelde punten open voor je neer. Zo ziet iedereen hoeveel punten je al hebt verzameld.
+Soorten kaarten
+Actiekaarten
+Deze kaarten leveren geen punten op, maar beïnvloeden wel het spel:
+•	+1 of +2: de volgende speler neemt extra kaarten en slaat een beurt over.
+•	Sla iedereen over, het is meteen terug aan jou!
+•	Sst! Leg een speler het zwijgen op wanneer die een opdracht krijgt. Jij moet dan antwoorden of de opdracht doen om het punt te verdienen.
+•	Steel een puntenkaart van een tegenspeler. Je moet dan wel dezelfde vraag of hetzelfde dilemma beantwoorden, of dezelfde opdracht doen.
+Joker-kaarten
+Krijg je een dilemma, vraag of opdracht waar je liever niet op antwoordt? Speel dan je Joker-kaart: je hoeft het dilemma of de vraag niet te beantwoorden of de opdracht niet te doen, maar je krijgt toch het punt. 
+Leg je Joker-kaart daarna onderaan de trekstapel.
+Dilemma-kaarten
+Laat een andere speler het dilemma verzinnen, kies één van de twee opties en krijg 1 punt. Voorbeeld: Elke dag vóór 7 uur opstaan of elke dag vóór 7 uur gaan slapen?
+Doe-kaarten
+Laat een andere speler een opdracht verzinnen, voer ze uit en krijg 2 punten. Voorbeeld: Vertel een verhaal zonder "euh" te zeggen.
+Waarheid-kaarten
+Laat een andere speler een vraag verzinnen, antwoord eerlijk en krijg 2 punten. Voorbeeld: Zeg de eerste letter van de naam van je crush.
+Tip: gebruik onze app om dilemma’s en doen/waarheid-vragen te verzinnen!
+Geen inspiratie om een dilemma, opdracht of vraag te verzinnen? Of je wil het spel sneller laten verlopen? Of je bent benieuwd naar de random vragen en dillema’s van de app? 
+Gebruik deze app door op de knop Dilemma te drukken als je een dilemma-kaart speelt, of op de knop Doen/Waarheid als je een Doen/Waarheid-kaart speelt.`
+});
     }
   });
 
